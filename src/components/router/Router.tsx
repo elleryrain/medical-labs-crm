@@ -9,6 +9,8 @@ import { TypesWorkPage } from "../../pages/TypesWorkPage/TypesWorkPage";
 import { CategoryTechniquesPage } from "../../pages/CategoryTechniquesPage/CategoryTechniquesPage";
 import { WarehousePage } from "../../pages/WarehousePage/WarehousePage";
 import { SalariesPage } from "../../pages/SalariesPage/SalariesPage";
+import { AuthPage } from "../../pages/AuthPage/AuthPage";
+import { AuthLayuot } from "../../AuthLayuot";
 
 export const router = createBrowserRouter(
   [
@@ -23,8 +25,12 @@ export const router = createBrowserRouter(
         { path: routes.categoryTechniques, element: <CategoryTechniquesPage /> },
         { path: routes.warehouse, element: <WarehousePage /> },
         { path: routes.salaries, element: <SalariesPage /> },
-      ],
+      ]
     },
+    {
+      element: <AuthLayuot />,
+      children: [{ path: routes.auth, element: <AuthPage /> }],
+    }
   ],
   {
     future: {
