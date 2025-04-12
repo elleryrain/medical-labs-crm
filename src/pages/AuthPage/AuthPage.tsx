@@ -1,6 +1,9 @@
 import styled from "styled-components"
-import Mail from "@img/Mail.svg?react"
+import ProfileIcon from "@img/ProfileIcon.svg?react"
 import Lock from "@img/Lock.svg?react"
+import EyeOpenIcon from "@img/EyeOpenIcon.svg?react"
+import EyeCloseIcon from "@img/EyeCloseIcon.svg?react"
+import { useState } from "react"
 
 const AuthPageContainer = styled.div`
     display: flex;
@@ -47,7 +50,8 @@ const InputWrapper = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 15px;
+    height: 71px;
     
     padding: 24px 22px;
     border-radius: 15px;
@@ -86,6 +90,9 @@ const SubmitButton = styled.button`
 `
 
 export const AuthPage = () => {
+
+    const [checkPassword, setCheckPassword] = useState(false)
+
     return (
         <AuthPageContainer>
             <AuthContainer>
@@ -96,12 +103,21 @@ export const AuthPage = () => {
                 <AuthFormContainer action="">
                     <InputContainer>
                         <InputWrapper>
-                            <Mail />
-                            <Input placeholder="Электронная почта" type="email"/>
+                            <ProfileIcon />
+                            <Input placeholder="Логин" type="text" />
                         </InputWrapper>
                         <InputWrapper>
                             <Lock />
-                            <Input placeholder="Пароль" type="password"/>
+                            <Input placeholder="Пароль" type={checkPassword ? "text" : "password"} />
+                            {checkPassword ?
+                                <EyeCloseIcon
+                                    style={{ cursor: "pointer", userSelect: "none" }}
+                                    onClick={() => setCheckPassword(false)} />
+                                :
+                                <EyeOpenIcon
+                                    style={{ cursor: "pointer", userSelect: "none" }}
+                                    onClick={() => setCheckPassword(true)} />
+                            }
                         </InputWrapper>
                     </InputContainer>
                     <ForgotPassword>Забыли пароль?</ForgotPassword>
